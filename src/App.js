@@ -8,7 +8,7 @@ function App() {
   return (
     <ul>
       {animals.map(animal => (
-        <li>{animal}</li>
+        <li><Greet char={animal}/></li>
       ))}
     </ul>
   );
