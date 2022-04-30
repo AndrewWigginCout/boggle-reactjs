@@ -3,24 +3,16 @@ import './App.css';
 import Greet from './components/Greet'
 
 function App() {
-  return (
-    <div className="App">
-    <table>
-    <tr>
-      <td><Greet char="B"/></td>
-      <td><Greet char="A"/></td>
-      <td><Greet char="D"/></td>
+  const animals = ["Dog", "Bird", "Cat", "Mouse", "Horse"];
 
-    </tr>
-    <tr>
-      <td><Greet char="D"/></td>
-      <td><Greet char="O"/></td>
-      <td><Greet char="G"/></td>
-    </tr>
-    
-    </table>
-    </div>
+  return (
+    <ul>
+      {animals.map(animal => (
+        <li>{animal}</li>
+      ))}
+    </ul>
   );
-}
+};
+
 
 export default App;
