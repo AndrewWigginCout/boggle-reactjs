@@ -1,7 +1,6 @@
 import React from 'react'
 
-function Greet() {
-  return <h1>Hello Vishwas</h1>
-}
+const Greet = (props) => <button>{props.char}</button>
+
 
 export default Greet

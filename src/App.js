@@ -7,14 +7,15 @@ function App() {
     <div className="App">
     <table>
     <tr>
-      <td><Greet/></td>
-      <td><Greet/></td>
-      <td><Greet/></td>
+      <td><Greet char="B"/></td>
+      <td><Greet char="A"/></td>
+      <td><Greet char="D"/></td>
+
     </tr>
     <tr>
-      <td><Greet/></td>
-      <td><Greet/></td>
-      <td><Greet/></td>
+      <td><Greet char="D"/></td>
+      <td><Greet char="O"/></td>
+      <td><Greet char="G"/></td>
     </tr>
     
     </table>
