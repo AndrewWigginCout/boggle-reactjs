@@ -11,19 +11,25 @@ const TableRow = (props) => {
     </tr>)
 }
 
+const Table = (props) => {
+  return(
+    <table>
+      {props.v.map(r => (
+      <TableRow v={r} />
+      ))}
+    </table>)
+}
+
 function App() {
   const animals = [["Dog", "Bird", "Cat", "Mouse", "Horse"],
   ["Chicken","Raven","Possum","Monkey","Shrimp"]];
-
+  const g = [["0","1","2"],
+             ["A","B","C"],
+             ["x","y","z"]]
   return (
-    <div>
-    <tr>
-      {animals[0].map(animal => (
-        <td><Greet char={animal}/></td>
-      ))}
-    </tr>
-    <TableRow v={animals[1]}/>
-    </div>
+    <pre>
+    <Table v={g}/>
+    Hello World</pre>
   );
 };
 
