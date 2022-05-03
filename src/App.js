@@ -19,11 +19,12 @@ const TableRow = (props) => {
 }
 
 const Table = (props) => {
+  let g = []
+  for (let i=0; i < 5; i++){
+    g.push(<TableRow/>)}
   return(
     <table>
-      {props.v.map(r => (
-      <TableRow v={r} />
-      ))}
+      {g}
     </table>)
 }
 
@@ -34,9 +35,9 @@ function App() {
              ["A","B","C"],
              ["x","y","z"]]
   return (
-    <pre>
+    <div>
     <Table v={g}/>
-    Hello World</pre>
+    Hello World</div>
   );
 };
 
