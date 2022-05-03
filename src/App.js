@@ -12,10 +12,12 @@ function getRandomChar() {
 
 const TableRow = (props) => {
   let content = [];
-  for (let i = 0; i < 5; i++){
+  for (let i = 0; i < 8; i++){
     content.push(<td><Greet char={getRandomChar()}/></td>)
   }
-  return(<tr>{content}</tr>)
+  let rv=<tr>{content}</tr>
+  console.log(rv)
+  return (rv)
 }
 
 const Table = (props) => {
