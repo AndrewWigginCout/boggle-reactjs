@@ -14,7 +14,7 @@ function setMy(c) {
   setmString(c);
 }
 
-function Hot(){
+const Hot = () => {
   setmString("M15");
 }
 
@@ -22,7 +22,7 @@ const TableRow = (props) => {
   let content = [];
   for (let j = 0; j < N; j++){
     let c = getRandomChar();
-    content.push(<td><button id={props.i*M+j} >{c}</button></td>)
+    content.push(<td><button id={props.i*M+j} >{g[props.i][j]}</button></td>)
   }
   let rv=<tr>{content}</tr>
   return (rv)
@@ -31,7 +31,7 @@ const TableRow = (props) => {
 const Table = (props) => {
   let g = []
   for (let i=0; i < M; i++){
-    g.push(<TableRow i={i}/>)}
+    g.push(<TableRow i={i} g={props.v}/>)}
   return(
     <table><tbody>
       {g}
@@ -39,16 +39,18 @@ const Table = (props) => {
 }
 
   const [mString, setmString] = useState('COLD')
-  const animals = [["Dog", "Bird", "Cat", "Mouse", "Horse"],
-  ["Chicken","Raven","Possum","Monkey","Shrimp"]];
-  const g = [["0","1","2"],
-             ["A","B","C"],
-             ["x","y","z"]]
+  const g=[]
+  for (let i = 0; i < M; i++){
+    const row=[]
+    for (let j = 0; j < N; j++){
+      row.push(getRandomChar());}
+    g.push(row);}
+  console.log("g=",g);
   return (
     <div>
     <Table v={g}/>
     {mString}
-    <button onClick={Hot}/>
+    <button onClick={Hot}>TEST</button>
     </div>
   );
 };
