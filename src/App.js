@@ -14,43 +14,43 @@ function setMy(c) {
   setmString(c);
 }
 
-const Hot = () => {
-  setmString("M15");
+const Heat = () => {
+  setmString("HOT");
 }
 
-const TableRow = (props) => {
-  let content = [];
-  for (let j = 0; j < N; j++){
-    let c = getRandomChar();
-    content.push(<td><button id={props.i*M+j} >{g[props.i][j]}</button></td>)
-  }
+const MyBtnHandler = (i,j) => {
+  console.log("i,j=",i,j);
+  setmString(mString+g[i][j]);
+}
+
+const TableRow = ({row,i}) => {
+  let content = row.map((cell,j) => (<td><button id={i*M+j} onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
   let rv=<tr>{content}</tr>
   return (rv)
 }
 
-const Table = (props) => {
-  let g = []
-  for (let i=0; i < M; i++){
-    g.push(<TableRow i={i} g={props.v}/>)}
+const Table = ({g}) => {
+  let table = g.map((row,i) => (<TableRow row={row} i={i}/>));
   return(
     <table><tbody>
-      {g}
+      {table}
     </tbody></table>)
 }
 
   const [mString, setmString] = useState('COLD')
-  const g=[]
+  const tempg=[]
   for (let i = 0; i < M; i++){
     const row=[]
     for (let j = 0; j < N; j++){
       row.push(getRandomChar());}
-    g.push(row);}
-  console.log("g=",g);
+    tempg.push(row);}
+  console.log("tempg=",tempg,JSON.stringify(tempg));
+  const [g, setg] = useState(tempg)
   return (
     <div>
-    <Table v={g}/>
+    <Table g={g}/>
     {mString}
-    <button onClick={Hot}>TEST</button>
+    <button onClick={Heat}>TEST</button>
     </div>
   );
 };
