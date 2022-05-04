@@ -1,36 +1,44 @@
-import logo from './logo.svg';
+import {useState, useEffect} from 'react'
 import './App.css';
 import Greet from './components/Greet'
 
-const alpha = Array.from(Array(26)).map((e, i) => i + 65);
-const alphabet = alpha.map((x) => String.fromCharCode(x));
-console.log(alphabet);
+const N = 7
+const M = 4
 
 function getRandomChar() {
   return String.fromCharCode(Math.floor(Math.random() * 26 + 65));
 }
+function App() {
+
+function setMy(c) {
+  setmString(c);
+}
+
+function Hot(){
+  setmString("M15");
+}
 
 const TableRow = (props) => {
   let content = [];
-  for (let i = 0; i < 8; i++){
-    content.push(<td><Greet char={getRandomChar()}/></td>)
+  for (let j = 0; j < N; j++){
+    let c = getRandomChar();
+    content.push(<td><button id={props.i*M+j} >{c}</button></td>)
   }
   let rv=<tr>{content}</tr>
-  console.log(rv)
   return (rv)
 }
 
 const Table = (props) => {
   let g = []
-  for (let i=0; i < 5; i++){
-    g.push(<TableRow/>)}
+  for (let i=0; i < M; i++){
+    g.push(<TableRow i={i}/>)}
   return(
-    <table>
+    <table><tbody>
       {g}
-    </table>)
+    </tbody></table>)
 }
 
-function App() {
+  const [mString, setmString] = useState('COLD')
   const animals = [["Dog", "Bird", "Cat", "Mouse", "Horse"],
   ["Chicken","Raven","Possum","Monkey","Shrimp"]];
   const g = [["0","1","2"],
@@ -39,7 +47,9 @@ function App() {
   return (
     <div>
     <Table v={g}/>
-    Hello World</div>
+    {mString}
+    <button onClick={Hot}/>
+    </div>
   );
 };
 
