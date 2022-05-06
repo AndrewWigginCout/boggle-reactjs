@@ -20,7 +20,12 @@ const Heat = () => {
 
 const MyBtnHandler = (i,j) => {
   console.log("i,j=",i,j);
-  setmString(mString+g[i][j]);
+  setmString(mString+g[i][j]+String(i)+String(j));
+  set_ui_coords(ui_coords.concat(i*N+j))
+}
+
+const ShowCoords = () => {
+  return (<h1>{JSON.stringify(ui_coords)}</h1>)
 }
 
 const TableRow = ({row,i}) => {
@@ -46,11 +51,13 @@ const Table = ({g}) => {
     tempg.push(row);}
   console.log("tempg=",tempg,JSON.stringify(tempg));
   const [g, setg] = useState(tempg)
+  const [ui_coords, set_ui_coords] = useState([])
   return (
     <div>
     <Table g={g}/>
     {mString}
     <button onClick={Heat}>TEST</button>
+    <ShowCoords/>
     </div>
   );
 };
