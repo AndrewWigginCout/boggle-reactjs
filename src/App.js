@@ -19,23 +19,31 @@ const Heat = () => {
 }
 
 const MyBtnHandler = (i,j) => {
-  console.log("i,j=",i,j);
   setmString(mString+g[i][j]+String(i)+String(j));
+  console.log("i,j=",i,j);
   set_ui_coords(ui_coords.concat(i*N+j))
-}
+  let sz = ui_coords.length
+  if (sz > 0 ){
+    let pp=ui_coords[ui_coords.length-1]
+    console.log("last=",pp)
+    let ip = Math.floor(pp / N)
+    let jp = pp % N
+    console.log("ip,jp=",ip,jp)
+
+}}
 
 const ShowCoords = () => {
   return (<h1>{JSON.stringify(ui_coords)}</h1>)
 }
 
 const TableRow = ({row,i}) => {
-  let content = row.map((cell,j) => (<td><button id={i*M+j} onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
+  let content = row.map((cell,j) => (<td key={i*M+j}><button onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
   let rv=<tr>{content}</tr>
   return (rv)
 }
 
 const Table = ({g}) => {
-  let table = g.map((row,i) => (<TableRow row={row} i={i}/>));
+  let table = g.map((row,i) => (<TableRow key={300+i} row={row} i={i}/>));
   return(
     <table><tbody>
       {table}
