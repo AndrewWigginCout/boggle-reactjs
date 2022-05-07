@@ -14,22 +14,37 @@ function setMy(c) {
   setmString(c);
 }
 
-const Heat = () => {
-  setmString("HOT");
+const Reset = () => {
+  setmString("");
+  set_ui_coords([])
 }
 
+function adjacent(j,i,y,x,N){
+  if (j==y && i==x) {return false}
+  if ((y-j)*(y-j)+(x-i)*(x-i) <= 2){return true}
+}
 const MyBtnHandler = (i,j) => {
-  setmString(mString+g[i][j]+String(i)+String(j));
-  console.log("i,j=",i,j);
-  set_ui_coords(ui_coords.concat(i*N+j))
+  {/*setmString(mString+g[i][j]+String(i)+String(j));
+  {/*console.log("g,i,j=",g[i][j],i,j);*/}
+  setmString(mString+g[i][j])
+  let cp = i*N+j; //current position
+  set_ui_coords(ui_coords.concat([[i,j]]))
   let sz = ui_coords.length
   if (sz > 0 ){
-    let pp=ui_coords[ui_coords.length-1]
-    console.log("last=",pp)
-    let ip = Math.floor(pp / N)
-    let jp = pp % N
-    console.log("ip,jp=",ip,jp)
-
+    let pp=ui_coords[ui_coords.length-1];//previous position
+    {/*console.log("last=",pp)*/}
+    {/*let ip = Math.floor(pp / N)
+    let jp = pp % N*/}
+    let j2 = pp[1];
+    let i2 = pp[0];
+    {/*console.log("ip,jp=",ip,jp)*/}
+    if (i2==i && j2==j){
+      setmString(mString+"same coord");
+      set_ui_coords([]);
+      return}
+    if (adjacent(i,j,i2,j2,N)){
+      setmString(mString+"link")
+    }
 }}
 
 const ShowCoords = () => {
@@ -50,21 +65,20 @@ const Table = ({g}) => {
     </tbody></table>)
 }
 
-  const [mString, setmString] = useState('COLD')
+  const [mString, setmString] = useState('')
   const tempg=[]
   for (let i = 0; i < M; i++){
     const row=[]
     for (let j = 0; j < N; j++){
       row.push(getRandomChar());}
     tempg.push(row);}
-  console.log("tempg=",tempg,JSON.stringify(tempg));
   const [g, setg] = useState(tempg)
   const [ui_coords, set_ui_coords] = useState([])
   return (
     <div>
     <Table g={g}/>
     {mString}
-    <button onClick={Heat}>TEST</button>
+    <button onClick={Reset}>Reset</button>
     <ShowCoords/>
     </div>
   );
