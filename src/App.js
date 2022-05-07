@@ -2,8 +2,8 @@ import {useState, useEffect} from 'react'
 import './App.css';
 import Greet from './components/Greet'
 
-const N = 7
-const M = 4
+const N = 5
+const M = 5
 
 function getRandomChar() {
   return String.fromCharCode(Math.floor(Math.random() * 26 + 65));
@@ -19,18 +19,19 @@ const Reset = () => {
   set_ui_coords([])
 }
 
-function adjacent(j,i,y,x,N){
+function adjacent(j,i,y,x){
   if (j==y && i==x) {return false}
   if ((y-j)*(y-j)+(x-i)*(x-i) <= 2){return true}
 }
 const MyBtnHandler = (i,j) => {
   {/*setmString(mString+g[i][j]+String(i)+String(j));
   {/*console.log("g,i,j=",g[i][j],i,j);*/}
-  setmString(mString+g[i][j])
   let cp = i*N+j; //current position
-  set_ui_coords(ui_coords.concat([[i,j]]))
   let sz = ui_coords.length
-  if (sz > 0 ){
+  if (sz == 0 ){
+    set_ui_coords(ui_coords.concat([[i,j]]));
+    setmString(g[i][j]);}
+  else{
     let pp=ui_coords[ui_coords.length-1];//previous position
     {/*console.log("last=",pp)*/}
     {/*let ip = Math.floor(pp / N)
@@ -39,14 +40,14 @@ const MyBtnHandler = (i,j) => {
     let i2 = pp[0];
     {/*console.log("ip,jp=",ip,jp)*/}
     if (i2==i && j2==j){
-      setmString(mString+"same coord");
-      set_ui_coords([]);
+      console.log(mString+"same coord");
       return}
-    if (adjacent(i,j,i2,j2,N)){
-      setmString(mString+"link")
+    if (adjacent(i,j,i2,j2)){
+      setmString(mString+g[i][j])
+      set_ui_coords(ui_coords.concat([[i,j]]))
     }
-}}
-
+  }
+}
 const ShowCoords = () => {
   return (<h1>{JSON.stringify(ui_coords)}</h1>)
 }
