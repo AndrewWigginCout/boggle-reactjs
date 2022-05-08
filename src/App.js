@@ -23,6 +23,11 @@ function adjacent(j,i,y,x){
   if (j==y && i==x) {return false}
   if ((y-j)*(y-j)+(x-i)*(x-i) <= 2){return true}
 }
+function includes(i,j,n){
+  for (let e of n){
+    if (e[0]==i && e[1]==j) {return true;}}
+  return false;}
+
 const MyBtnHandler = (i,j) => {
   {/*setmString(mString+g[i][j]+String(i)+String(j));
   {/*console.log("g,i,j=",g[i][j],i,j);*/}
@@ -42,7 +47,7 @@ const MyBtnHandler = (i,j) => {
     if (i2==i && j2==j){
       console.log(mString+"same coord");
       return}
-    if (adjacent(i,j,i2,j2)){
+    if (adjacent(i,j,i2,j2) && ! includes(i,j,ui_coords)){
       setmString(mString+g[i][j])
       set_ui_coords(ui_coords.concat([[i,j]]))
     }
