@@ -6,7 +6,27 @@ const N = 5
 const M = 5
 
 function getRandomChar() {
-  return String.fromCharCode(Math.floor(Math.random() * 26 + 65));
+  const dice = [
+  ["T","W","O","O","T","A"],
+  ["H","N","E","E","W","G"],
+  ["S","A","F","P","K","F"],
+  ["E","R","L","I","D","X"],
+  ["Y","E","D","L","E","V"],
+  ["Y","T","D","T","I","S"],
+  ["V","E","H","W","T","R"],
+  ["M","U","O","C","T","I"],
+  ["U","I","E","N","S","E"],
+  ["N","L","N","H","Z","R"],
+  ["I","S","S","O","E","T"],
+  ["T","R","E","T","L","R"],
+  ["E","A","N","A","G","E"],
+  ["U","N","H","I","QU","M"],
+  ["O","S","C","A","H","P"],
+  ["O","A","B","B","J","O"],
+  ];
+  const die = Math.floor(Math.random()*dice.length);
+  const roll = Math.floor(Math.random()*6);
+  return dice[die][roll];
 }
 function App() {
 
