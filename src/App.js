@@ -1,6 +1,5 @@
 import {useState, useEffect} from 'react'
 import './App.css';
-import Greet from './components/Greet'
 
 const N = 5
 const M = 5
@@ -38,6 +37,20 @@ const Reset = () => {
   setmString("");
   set_ui_coords([])
 }
+
+function rand(n){
+  return Math.floor(Math.random()*n);}
+
+function permutation(N){
+  let rv=[];
+  let v=[];
+  for (let i=0; i<N; i++){
+    v.push(i);}
+  for (let j=0; j<N; j++){
+    let r=rand(N-j);
+    rv.push(v[r]);
+    v.splice(r,1);}
+  return rv;}
 
 function adjacent(j,i,y,x){
   if (j==y && i==x) {return false}
@@ -92,13 +105,15 @@ const Table = ({g}) => {
 }
 
   const [mString, setmString] = useState('')
+function makegrid(){
   const tempg=[]
   for (let i = 0; i < M; i++){
     const row=[]
     for (let j = 0; j < N; j++){
       row.push(getRandomChar());}
     tempg.push(row);}
-  const [g, setg] = useState(tempg)
+  return tempg;}
+  const [g, setg] = useState(makegrid())
   const [ui_coords, set_ui_coords] = useState([])
   return (
     <div>
