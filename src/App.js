@@ -37,7 +37,8 @@ const Reset = () => {
   setmString("");
   set_ui_coords([])
 }
-
+const NewBoard = () =>{
+  setg(makegrid());}
 function rand(n){
   return Math.floor(Math.random()*n);}
 
@@ -118,8 +119,10 @@ function makegrid(){
   return (
     <div>
     <Table g={g}/>
-    {mString}
-    <button onClick={Reset}>Reset</button>
+    <button onClick={Reset}>Reset</button><br/>
+    <button onClick={NewBoard}>New Board</button><br/>
+    
+    Word: {mString}
     <ShowCoords/>
     </div>
   );
