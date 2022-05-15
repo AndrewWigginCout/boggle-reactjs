@@ -39,6 +39,12 @@ const Reset = () => {
 }
 const NewBoard = () =>{
   setg(makegrid());}
+  
+const SubmitWord = () => {
+  set_ui_wordlist(ui_wordlist.concat([ui_coords]))
+  set_ui_coords([])
+  setmString("")
+}
 function rand(n){
   return Math.floor(Math.random()*n);}
 
@@ -91,6 +97,10 @@ const ShowCoords = () => {
   return (<h1>{JSON.stringify(ui_coords)}</h1>)
 }
 
+const ShowUiWordlist = () => {
+  return (<h1>{JSON.stringify(ui_wordlist)}</h1>)
+}
+
 const TableRow = ({row,i}) => {
   let content = row.map((cell,j) => (<td key={i*M+j}><button onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
   let rv=<tr>{content}</tr>
@@ -116,14 +126,16 @@ function makegrid(){
   return tempg;}
   const [g, setg] = useState(makegrid())
   const [ui_coords, set_ui_coords] = useState([])
+  const [ui_wordlist, set_ui_wordlist] = useState([])
   return (
     <div>
     <Table g={g}/>
     <button onClick={Reset}>Reset</button><br/>
     <button onClick={NewBoard}>New Board</button><br/>
-    
+    <button onClick={SubmitWord}>Submit Word</button><br/>
     Word: {mString}
     <ShowCoords/>
+    <ShowUiWordlist/>
     </div>
   );
 };
