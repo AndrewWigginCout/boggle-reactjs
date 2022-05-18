@@ -38,9 +38,13 @@ const Reset = () => {
   set_ui_coords([])
 }
 const NewBoard = () =>{
+  setmString("");
+  set_ui_coords([]);
+  set_ui_wordlist([]);
   setg(makegrid());}
   
 const SubmitWord = () => {
+  if (ui_coords.length==0) return;
   set_ui_wordlist(ui_wordlist.concat([ui_coords]))
   set_ui_coords([])
   setmString("")
@@ -101,6 +105,16 @@ const ShowUiWordlist = () => {
   return (<h1>{JSON.stringify(ui_wordlist)}</h1>)
 }
 
+const ShowUiWordlist2 = () => {
+  let rs="";
+  for (let j=0;j < ui_wordlist.length; j++){
+    for (let i=0;i < ui_wordlist[j].length; i++){
+      let c=ui_wordlist[j][i];
+      rs+=g[c[0]][c[1]]}
+    rs+="---";}
+  return (<h1>{rs.substring(0,rs.length-3)}</h1>)
+}
+
 const TableRow = ({row,i}) => {
   let content = row.map((cell,j) => (<td key={i*M+j}><button onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
   let rv=<tr>{content}</tr>
@@ -136,6 +150,7 @@ function makegrid(){
     Word: {mString}
     <ShowCoords/>
     <ShowUiWordlist/>
+    <ShowUiWordlist2/>
     </div>
   );
 };
