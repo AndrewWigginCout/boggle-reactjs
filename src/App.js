@@ -105,7 +105,17 @@ const ShowUiWordlist = () => {
   return (<h1>{JSON.stringify(ui_wordlist)}</h1>)
 }
 
+function grabletter(s,e){
+  return s + g[e[0]][e[1]];
+}
+function g2(s,e){
+  return s+e;
+}
 const ShowUiWordlist2 = () => {
+  let rv3 = ui_wordlist.map( (e) => (e.reduce((x,y) => {return x+g[y[0]][y[1]]},"") ))
+  let rv = ['apple','banana'];
+  let rv2 = rv.reduce(g2);
+  return (<h1>{rv3.join("-")}</h1>)
   let rs="";
   for (let j=0;j < ui_wordlist.length; j++){
     for (let i=0;i < ui_wordlist[j].length; i++){
