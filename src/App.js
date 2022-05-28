@@ -58,7 +58,7 @@ const CalculatePoints = () => {
   for (let i=0; i<rv3.length; i++){
     if (Wordlist.includes(rv3[i].toLowerCase())) {score+=d[rv3[i].length];}
   }
-  setmString(`You have scored: ${score} points.`);
+  set_ui_score(score);
 }
 
 function rand(n){
@@ -127,6 +127,11 @@ const ShowUiWordlist2 = () => {
   let rv3 = ui_wordlist.map( (e) => (e.reduce((x,y) => {return x+g[y[0]][y[1]]},"") ))
   return (<h1>{rv3.join("-")}</h1>)
 }
+const ShowScore = () => {
+  if (ui_score) {
+    return (<div>You have scored {ui_score} point(s).</div>)}
+  else {
+    return (<div/>)}}
 
 const TableRow = ({row,i}) => {
   let content = row.map((cell,j) => (<td key={i*M+j}><button onClick={() => MyBtnHandler(i,j)}>{cell}</button></td>))
@@ -154,17 +159,26 @@ function makegrid(){
   const [g, setg] = useState(makegrid())
   const [ui_coords, set_ui_coords] = useState([])
   const [ui_wordlist, set_ui_wordlist] = useState([])
+  const [ui_score, set_ui_score] = useState(0);
   return (
     <div>
+    <h1>Welcome to my Boggle implementation in React JS.</h1>
+    <div>You can play this game by clicking words from the letters availabe.
+      Cells must be adjacent and cells cannot be repeated.
+      After you complete a word click "Submit Word" to stash it in your bank.
+      When you have exhausted your search, click "Calculate Points" to determine your score.
+    </div>
     <Table g={g}/>
+    <br/>
+    Word: {mString}<br/>
+    <ShowUiWordlist2/>
     <button onClick={Reset}>Reset current word</button><br/>
     <button onClick={NewBoard}>New Board</button><br/>
     <button onClick={SubmitWord}>Submit Word</button><br/>
     <button onClick={CalculatePoints}>Calculate Points</button><br/>
-    Word: {mString}
+    <ShowScore/>
     <ShowCoords/>
     <ShowUiWordlist/>
-    <ShowUiWordlist2/>
     </div>
   );
 };
