@@ -1,4 +1,6 @@
 import {useState, useEffect} from 'react'
+import Wordlist from './niceware.js'
+//When you use default export you don't need to destructure
 import './App.css';
 
 const N = 5
@@ -49,6 +51,16 @@ const SubmitWord = () => {
   set_ui_coords([])
   setmString("")
 }
+const CalculatePoints = () => {
+  let rv3 = ui_wordlist.map( (e) => (e.reduce((x,y) => {return x+g[y[0]][y[1]]},"") ))
+  let score = 0;
+  let d = {1:0,2:0,3:1,4:1,5:2,6:3,7:5,8:11,9:11,10:11,11:11,12:11,13:11}
+  for (let i=0; i<rv3.length; i++){
+    if (Wordlist.includes(rv3[i].toLowerCase())) {score+=d[rv3[i].length];}
+  }
+  setmString(`You have scored: ${score} points.`);
+}
+
 function rand(n){
   return Math.floor(Math.random()*n);}
 
@@ -113,16 +125,7 @@ function g2(s,e){
 }
 const ShowUiWordlist2 = () => {
   let rv3 = ui_wordlist.map( (e) => (e.reduce((x,y) => {return x+g[y[0]][y[1]]},"") ))
-  let rv = ['apple','banana'];
-  let rv2 = rv.reduce(g2);
   return (<h1>{rv3.join("-")}</h1>)
-  let rs="";
-  for (let j=0;j < ui_wordlist.length; j++){
-    for (let i=0;i < ui_wordlist[j].length; i++){
-      let c=ui_wordlist[j][i];
-      rs+=g[c[0]][c[1]]}
-    rs+="---";}
-  return (<h1>{rs.substring(0,rs.length-3)}</h1>)
 }
 
 const TableRow = ({row,i}) => {
@@ -154,9 +157,10 @@ function makegrid(){
   return (
     <div>
     <Table g={g}/>
-    <button onClick={Reset}>Reset</button><br/>
+    <button onClick={Reset}>Reset current word</button><br/>
     <button onClick={NewBoard}>New Board</button><br/>
     <button onClick={SubmitWord}>Submit Word</button><br/>
+    <button onClick={CalculatePoints}>Calculate Points</button><br/>
     Word: {mString}
     <ShowCoords/>
     <ShowUiWordlist/>
