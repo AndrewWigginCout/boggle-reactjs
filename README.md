@@ -1,4 +1,12 @@
-To install my app:
+# Description
+
+Welcome to my Boggle implementation in React JS.
+Boggle is a board game, with lettered dice. The dice create a random grid of letters.
+You play the game by finding a sequence of cells that spell out words.
+
+For those unfamiliar with React, a lot of this code is boilerplate. My code is in /src/App.js
+
+# Install Instructions
 
 Assuming a properly installed Node environment,
 you need to drop this git into a generic npm react app. Do:
